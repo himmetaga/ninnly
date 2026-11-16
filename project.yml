@@ -25,6 +25,10 @@ targets:
     platform: iOS
     sources:
       - Ninnly
+      # Katmanlı uygulama ikonu (Icon Composer biçimi; Himmet'in görselinden piksel değiştirmeden ayrıldı)
+      - path: Branding/AppIcon.icon
+        type: file
+        buildPhase: resources
     dependencies:
       - package: NinnlyCore
     settings:

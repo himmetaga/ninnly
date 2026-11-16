@@ -35,4 +35,26 @@ final class HomeScreenshotTests: XCTestCase {
         attachment.lifetime = .keepAlways
         add(attachment)
     }
+
+    /// Uygulamadan çıkıp iPhone ana ekranında Ninnly ikonunu bulur ve görüntüsünü alır.
+    func testAppIconOnHomeScreen() throws {
+        let app = XCUIApplication()
+        app.launch()
+        XCUIDevice.shared.press(.home)
+
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let icon = springboard.icons["Ninnly"]
+        XCTAssertTrue(icon.waitForExistence(timeout: 10), "Ana ekranda Ninnly ikonu bulunamadı.")
+        var kaydirma = 0
+        while !icon.isHittable && kaydirma < 4 {
+            springboard.swipeLeft()
+            kaydirma += 1
+        }
+        sleep(1)
+
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        attachment.name = "home-screen-icon"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
 }

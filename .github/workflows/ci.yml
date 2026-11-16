@@ -77,6 +77,17 @@ jobs:
             -resultBundlePath build/Ninnly.xcresult \
             CODE_SIGNING_ALLOWED=NO | tee build/xcodebuild.log
 
+      - name: Uygulama ikonunun derlendiğini doğrula
+        if: always()
+        shell: bash
+        run: |
+          APP="$(find ~/Library/Developer/Xcode/DerivedData -maxdepth 6 -type d -path '*Debug-iphonesimulator/Ninnly.app' | head -1)"
+          echo "Uygulama: $APP"
+          grep -i "icon" build/xcodebuild.log | grep -i -E "warning|error" || echo "İkonla ilgili uyarı/hata yok"
+          /usr/libexec/PlistBuddy -c "Print :CFBundleIcons" "$APP/Info.plist" || true
+          xcrun assetutil --info "$APP/Assets.car" | grep -E '"(Name|RenditionName|Appearance|PixelHeight)"' | grep -i -A3 'AppIcon' | head -60 || true
+          xcrun assetutil --info "$APP/Assets.car" | grep -q 'AppIcon' || { echo "HATA: AppIcon derlenmemiş" >&2; exit 1; }
+
       - name: Ekran görüntülerini dışa aktar
         if: always()
         run: |
