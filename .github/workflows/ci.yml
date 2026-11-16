@@ -17,7 +17,8 @@ concurrency:
 
 jobs:
   build-test:
-    runs-on: macos-15
+    # Apple 28 Nisan 2026'dan beri yalnız Xcode 26 ile derlenen yüklemeyi kabul ediyor; macos-26 varsayılanı Xcode 26.x
+    runs-on: macos-26
     timeout-minutes: 30
 
     steps:
