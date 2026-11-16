@@ -1,5 +1,7 @@
 # Ninnly — Mimari Plan (logodan işleve)
 
+> **Kapsam güncellemesi (2026-11-16):** Ninnly bir annelik yolculuğu uygulaması: gebelikten çocuk 6 yaşına kadar. Gebelik ve 1–6 yaş bölümleri M7 araştırması gelince eklenecek; aşı takvimi bütün erişilebilen ülkelere genişliyor (M6).
+
 Tarih: 2026-11-16. Dayanak: `docs/PLAN.md` (kararlar) ve araştırmalar `docs/arastirma/A1`, `M1` (pazar, rakip, yasal), `M2` (ebeveyn ihtiyaçları), `M3` (teknik), `M4` (tasarım, marka), `M5` (aşı takvimleri). Bu belge "nasıl yapılacak" sorusunu yanıtlar; "ne yapılacak" kararları PLAN'dadır. Claude'un doğrulamadığı araştırma iddiaları belirtilmiştir.
 
 ---
@@ -117,7 +119,7 @@ Kurallar: arayüz `NinnlyCore`'u ve `NinnlyData`'yı kullanır, tersi asla. Ekra
 
 ## 7. Aşı ve tarama takvimi
 
-- Uygulama **her ülkede** satılır; hazır takvim **Türkiye ve ABD** için (PLAN §1). Ülke telefonun bölgesinden seçilir, ayarlardan değişir. Diğer ülkelerde aile kendi takvimini girer; başka ülkenin takvimi asla gösterilmez.
+- Uygulama **her ülkede** satılır; hazır takvim **resmî takvimine erişilebilen bütün ülkeler** için (Himmet, 2026-11-16). İlk ikisi Türkiye ve ABD (aşağıda); diğer ülkelerin kaynakları, lisansları ve bölgesel farkları M6 araştırmasıyla belirlenip bu bölüme eklenecek. Veri dosyası ülke başına bir dosya olur (`vaccines_<ülke kodu>.json`) ve bölge, dil, lisans, kaynak tarihi alanlarını taşır. Ülke telefonun bölgesinden seçilir, ayarlardan değişir. Diğer ülkelerde aile kendi takvimini girer; başka ülkenin takvimi asla gösterilmez.
 - Takvim **veri dosyası** olarak `NinnlyCore` içinde durur (her doz: kod, ad TR/EN, zaman aralığı, en kısa aralık, koşul, kaynak, kaynak tarihi). Kod takvimi değil, motoru içerir; takvim değişince yalnız veri dosyası ve testleri değişir, uygulama güncellemesiyle gelir (sunucu yok).
 - **Türkiye bebek:** ulusal program — 14 Nisan 2025'ten beri 6'lı karma (sağlıklı bebekte ayrı 1. ay ve 6. ay hepatit B iğnesi yok), **1 Eylül 2026'dan beri 48. ayda suçiçeği 2. doz** (A1'de eksikti; ikincil kaynaklarla doğrulandı, resmî metin yayından önce asi.saglik.gov.tr'den yeniden kontrol edilecek). Bebek profilinde iki isteğe bağlı anahtar: "anne HBsAg pozitif" (doğumda HBIG, 1. ay tekli hepatit B, 9–12. ayda kan testi hatırlatıcısı) ve "2000 g altı doğum" (BCG için ağırlık/hafta notu, 1. ay hepatit B). 9. ay KKK "doktor önerirse" etiketiyle; 12. ay dozunun yerini tutmaz. Ulusal program dışı aşılar (rotavirüs, meningokok B ve ACWY, grip) ayrı bölümde, tek dokunuşla eklenir. Yenidoğan taramaları (topuk kanı, işitme, kalça ultrasonu, kırmızı refle, prematürede ROP) ilk 60 günün kontrol listesi.
 - **Türkiye anne:** gebelikte Tdab (2 Nisan 2025'ten beri ücretsiz, 18–36. hafta) "yapıldı mı" kaydı; Doğum Sonu Bakım Rehberi'ndeki lohusa izlemleri (2–5. gün, 13–17. gün, 30–42. gün) hatırlatıcı olarak.
