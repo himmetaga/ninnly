@@ -9,7 +9,7 @@ Tarih: 2026-11-16 · Kaynak: *Ninnly iOS Master Araştırma, Analiz ve Mimari Ra
 | Teknoloji | SwiftUI yerel uygulama. iOS 18+, watchOS 11+. Mac yok: derleme, test ve simülatör ekran görüntüleri GitHub Actions macOS makinelerinde alınır. |
 | İş modeli | **Tek fiyatlı ücretli uygulama.** Uygulama içi satın alma, abonelik, deneme süresi ve reklam yok. Bütün özellikler satın alan herkese açık. |
 | v1.0 kapsamı | Raporun tamamı: bütün modüller + Apple Watch + Siri + CSV ile veri aktarma. |
-| Konum | `C:/Users/win10/Desktop/ninnly` ↔ GitHub `himmetaga/ninnly` (özel depo, dal `main`). |
+| Konum | `C:/Users/win10/Desktop/ninnly` ↔ GitHub `himmetaga/ninnly` (herkese açık depo, dal `main`; özel depoda macOS derlemesi fatura engeline takıldı. Strateji raporu yalnız yerelde, `docs/kaynak/` git dışı). |
 | Kimlikler | Bundle `dev.himmetaga.ninnly`, App Group `group.dev.himmetaga.ninnly`, iCloud `iCloud.dev.himmetaga.ninnly`. |
 | Apple hesabı | Mevcut bireysel geliştirici hesabı (Team JF563M2B3Z, Godloom ile aynı). |
 | Cihaz | Yalnız iPhone (dikey). |
@@ -68,6 +68,8 @@ Widget ve Watch verileri App Group üzerinden okur. Sunucu yok; geliştiriciye m
 
 **Marka (Himmet, 2026-11-16: "şık, premium, göze çarpan logo"):** Logo vektör (SVG) olarak tasarlanır ve 16 px'ten 1024 px'e kadar okunur kalır. Gece ve gündüz paletinin ikisinde de çalışır. Tek çizgiden kurulur ki açılışta çizilerek canlandırılabilsin. Uygulama ikonu da bu logodan türetilir.
 
+**Logo kararı (2026-11-16):** Küçük harf "n" anne ve bebek olarak okunur. Kemer, bebeğinin üstüne eğilen annedir; iki sapın arasında parlayan kehribar inci bebektir. Görünüm iOS 26 Liquid Glass: buzlu cam gövde, kenar ışığı, incinin camın iç yüzüne vuran sıcak yansıması, gece moru zemin. Kaynak `docs/marka/son/ninnly-ikon.svg`. İkonun açık, koyu ve renklendirilmiş (iOS 18) varyantları `Assets.xcassets/AppIcon` içinde. Uygulama içinde aynı biçim SwiftUI `Shape` olarak çizilir (`Ninnly/Brand`). Önceki turlar (`docs/marka/tur2`–`tur4`) reddedildi: yüzler çocuksu, fazla düz, rapordaki palet istenmedi.
+
 **Gizlilik:** Üçüncü taraf SDK ve analitik yok. `PrivacyInfo.xcprivacy` eklenecek. Veriler yalnız kullanıcının kendi iCloud hesabında durur.
 
 ## 4. v1.0 modülleri
@@ -116,10 +118,10 @@ Bu aşamalar için süre tahmini verilmiyor. Her aşamanın sonunda derleme temi
 
 ## 6. Yayın öncesi doğrulanması şart olan içerik
 
-- [ ] T.C. Sağlık Bakanlığı güncel çocukluk dönemi aşı takvimi ve taramalar (resmî sayfadan)
-- [ ] DSÖ büyüme standartları LMS tabloları ve kullanım lisansı
-- [ ] CDC ve AAP anne sütü saklama süreleri
-- [ ] Yaşa göre uyanıklık penceresi tablosu
+- [ ] T.C. Sağlık Bakanlığı güncel çocukluk dönemi aşı takvimi ve taramalar (resmî sayfadan). İlk tarama: `docs/arastirma/A1_kaynak_dogrulama.md`. Rapordaki takvim eski: 14 Nisan 2025'ten beri 2-4-6-18. aylarda 6'lı karma (DaBT-İPA-Hib-HepB) var, 1. ay ve 6. ay ayrı HepB dozları yok (HBsAg+ anne bebeği hariç). 9. ay KKK yalnız risk durumunda ek doz. Rotavirüs ulusal programda değil. Bunlar yayından önce resmî sayfadan bir kez daha elle teyit edilecek.
+- [ ] DSÖ büyüme standartları LMS tabloları ve kullanım lisansı. DSÖ içerikleri CC BY-NC-SA 3.0 IGO (ticari olmayan) lisanslı. Ücretli uygulamada kullanmak için DSÖ'den ticari izin istenir (§8). DSÖ logosu ve "DSÖ onaylı" ifadesi kullanılmaz.
+- [x] CDC ve AAP anne sütü saklama süreleri: oda 4 saat, buzdolabı 4 gün, dondurucu 6 ay en iyi ve 12 ay kabul edilebilir, çözülmüş süt buzdolabında 24 saat ve odada 1–2 saat, artan süt 2 saat, tekrar dondurma yok. `MilkStorage` bunlara göre yazıldı.
+- [x] Yaşa göre uyanıklık penceresi tablosu: üç kaynakla uyumlu. 11–14 ayda tek uykuya geçen bebek için 270–330 dk eklendi. Tıbbi standart değil, rehberdir; arayüzde bu not gösterilecek.
 - [ ] Ek gıda sunum kartları (boğulma riski: en hassas içerik)
 - [ ] "Ninnly" marka taraması: TÜRKPATENT, EUIPO, USPTO ve App Store
 - [ ] Huckleberry ve Nara Baby CSV biçimleri (gerçek örnek dosya gerekiyor)
@@ -134,7 +136,8 @@ Bu aşamalar için süre tahmini verilmiyor. Her aşamanın sonunda derleme temi
 ## 8. Açık kararlar (Himmet)
 
 - [ ] **Fiyat:** ABD ve Türkiye fiyat basamağı.
-- [x] **GitHub deposu:** özel, `himmetaga/ninnly` (2026-11-16).
+- [x] **GitHub deposu:** `himmetaga/ninnly`, 2026-11-16'da açıldı. Fatura engeli yüzünden herkese açık yapıldı (Himmet onayı).
+- [ ] **DSÖ ticari kullanım izni (A6 öncesi):** Büyüme persentilleri için DSÖ'nün izin formuyla başvuru yapılır. Başvuru Himmet adına yapılacağı için onayı gerekir. İzin gelmezse büyüme ekranı persentilsiz yalnız ölçüm grafiği olarak çıkar.
 - [ ] **App Store Connect kurulumu (A0 sonu):** Ninnly uygulama kaydı, iCloud kapsayıcısı ve App Group. Bunları Himmet açar ya da onaylar. GitHub'a `APPLE_TEAM_ID`, `APP_STORE_CONNECT_KEY`, `APP_STORE_CONNECT_KEY_ID` ve `APP_STORE_CONNECT_ISSUER_ID` gizli değerlerinin girilmesi gerekiyor (Godloom'daki anahtarla aynı).
 - [ ] **Aile Paylaşımı:** Öneri açık. Böylece eşin ve ailenin ayrıca satın alması gerekmez; aile grubu dışındaki bakıcı yine satın almak zorunda kalır.
 - [ ] **Gizlilik ve destek sayfası adresi:** App Store için şart. Seçenekler: `himmetaga.dev/ninnly` (mevcut, ücretsiz) ya da yeni bir alan adı (`ninnly.app` vb., ücretli).
