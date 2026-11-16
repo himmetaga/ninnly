@@ -7,7 +7,7 @@ Tarih: 2026-11-16 · Kaynak: *Ninnly iOS Master Araştırma, Analiz ve Mimari Ra
 | Konu | Karar |
 |---|---|
 | Teknoloji | SwiftUI yerel uygulama. iOS 18+, watchOS 11+. Mac yok: derleme, test ve simülatör ekran görüntüleri GitHub Actions macOS makinelerinde alınır. |
-| İş modeli | **Tek fiyatlı ücretli uygulama.** Uygulama içi satın alma, abonelik, deneme süresi ve reklam yok. Bütün özellikler satın alan herkese açık. |
+| İş modeli | **Abonelik: haftalık ve yıllık** (Himmet, 2026-11-16; ömür boyu / tek seferlik satış yok). Reklam yok. StoreKit 2, sunucusuz, üçüncü taraf kod yok. **Haftalık 2,99 $, yıllık 39,99 $; deneme yok; ücretsiz kısım yok; paylaşılan bebeğe davet edilen ödemez.** Türkiye fiyatı elle, daha düşük (MIMARI §10b). |
 | v1.0 kapsamı | Raporun tamamı: bütün modüller + Apple Watch + Siri + CSV ile veri aktarma. |
 | Konum | `C:/Users/win10/Desktop/ninnly` ↔ GitHub `himmetaga/ninnly` (herkese açık depo, dal `main`; özel depoda macOS derlemesi fatura engeline takıldı. Strateji raporu yalnız yerelde, `docs/kaynak/` git dışı). |
 | Ülkeler ve aşı takvimi | Uygulama **bütün ülkelerde** satılır (Himmet, 2026-11-16). Hazır anne + bebek aşı takvimi yalnız **Türkiye ve ABD** için hazırlanır ve her yıl resmî kaynaktan yeniden kontrol edilir. Takvim bölge ayarından otomatik seçilir, elle değiştirilebilir; her dozda kaynak ve son kontrol tarihi görünür. Hazır takvimi olmayan ülkede aile kendi takvimini girer; uygulama hiçbir zaman başka ülkenin takvimini göstermez. Dil "hatırlatıcı"dır, tıbbi öneri değil. Araştırma: `docs/arastirma/M5_asi_takvimleri.md`. |
@@ -19,7 +19,7 @@ Tarih: 2026-11-16 · Kaynak: *Ninnly iOS Master Araştırma, Analiz ve Mimari Ra
 
 1. **"SweetSpot" adı kullanılmaz.** Huckleberry'nin tescilli markası. Özelliğin adı "Uyku Penceresi" (EN: "Nap Window").
 2. **Anahtar kelimelerde rakip adı yok** ("nara", "huckleberry" çıkarıldı). App Store Review Guideline 2.3.7.
-3. **Ücretsiz/Plus katmanları kalktı** (tek fiyat kararı). Paywall, RevenueCat ve StoreKit yok.
+3. **Ücretsiz/Plus katmanları** önce tek fiyat kararıyla kalkmıştı; 2026-11-16 abonelik kararıyla StoreKit 2 geri geldi. RevenueCat yine yok (sunucusuz, cihazda doğrulama).
 4. **HealthKit v1.0'da yok.** Gerekmiyor; Guideline 5.1.3 yükünü ve inceleme riskini azaltır.
 5. **Teşhis dili yok.** Dışkı rengi, ateş ve büyüme gibi veriler "bilgi + doktorunuza danışın" olarak sunulur; uyarı ya da teşhis gibi gösterilmez (Guideline 1.4.1).
 6. **Tıbbi içerik doğrulanmadan yayına girmez** (bkz. §6).

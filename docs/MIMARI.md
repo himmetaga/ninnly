@@ -9,7 +9,7 @@ Tarih: 2026-11-16. Dayanak: `docs/PLAN.md` (kararlar) ve araştırmalar `docs/ar
 1. **Gece 03:00, tek el, kucakta bebek.** Her temel kayıt en çok iki dokunuşta biter; birincil düğmeler ekranın alt yarısındadır; kilit ekranından ve saatten de yapılır.
 2. **Kaygı üretme.** Kıyaslama yok, kırmızı alarm yok, "seri bozuldu" yok. Persentil ve ortalama gizlenebilir ("Kaygısız Görünüm").
 3. **Veri bizde değil.** Sunucu, hesap, analitik, üçüncü taraf kod yok. Veri yalnız cihazda ve ailenin iCloud'unda. Mağaza etiketi: "Veri Toplanmıyor".
-4. **Ödeme baskısı yok.** Tek fiyat; içeride satın alma, deneme, reklam yok.
+4. **Abonelik var, baskı yok.** Haftalık ve yıllık abonelik (Himmet, 2026-11-16; ömür boyu satış yok). Reklam yok; karanlık desen (gizli deneme sonu, kapatılmayan pencere, gece kayıt anında ödeme ekranı) yok. Ayrıntı §10b.
 5. **Kutusuz, yüzen tipografi.** Kart, panel, çerçeve yok; hiyerarşi yazı boyutu, renk ve boşlukla kurulur. Hareket canlı ama gece sakindir.
 
 ---
@@ -100,7 +100,7 @@ Kurallar: arayüz `NinnlyCore`'u ve `NinnlyData`'yı kullanır, tersi asla. Ekra
 
 ## 6. Ekranlar ve akış
 
-**İlk 60 saniye** (M2 §8): tek ekran — doğum tarihi (varsayılan bugün) ve isteğe bağlı ad. "Başla" → ana ekran. Hesap, anket, tanıtım turu yok. Bildirim izni ilk hatırlatıcı kurulurken istenir, açılışta değil. Önceki uygulamadan geçenler için ilk ekranda küçük bir "Huckleberry / Nara verimi getir" bağlantısı.
+**İlk 60 saniye** (M2 §8): tek ekran — doğum tarihi (varsayılan bugün) ve isteğe bağlı ad. "Başla" → ödeme ekranı (§10b; davet bağlantısıyla gelen atlar) → ana ekran. Hesap, anket, tanıtım turu yok. Bildirim izni ilk hatırlatıcı kurulurken istenir, açılışta değil. Önceki uygulamadan geçenler için ilk ekranda küçük bir "Huckleberry / Nara verimi getir" bağlantısı.
 
 **Ana ekran ("Şimdi"):**
 - Üst yarı (okuma): süren sayaç (büyük, eş aralıklı rakam), "son beslenme 2 sa 10 dk önce · sol", Uyku Penceresi aralığı, sabit devir notu, son olayı kimin girdiği (Anne / Baba / Anneanne).
@@ -168,6 +168,19 @@ Kurallar: arayüz `NinnlyCore`'u ve `NinnlyData`'yı kullanır, tersi asla. Ekra
 
 ---
 
+## 10b. Abonelik (StoreKit 2, sunucusuz)
+
+- **Ürünler (Himmet, 2026-11-16):** tek abonelik grubu ("Ninnly Premium"), iki ürün: **haftalık 2,99 $** ve **yıllık 39,99 $**. **Deneme yok. Ücretsiz kısım yok:** uygulama abonelikle açılır. Türkiye fiyatı alım gücüne göre elle ve daha düşük belirlenir (App Store Connect kurulumunda Himmet onaylar).
+- **Akış:** tek ekranlık başlangıç (doğum tarihi, isteğe bağlı ad) → ödeme ekranı → ana ekran. Ödeme ekranı uygulamanın ne yaptığını üç satırda ve gerçek ekran görüntüleriyle gösterir.
+- **Doğrulama cihazda:** StoreKit 2 `Transaction.currentEntitlements` ve `Transaction.updates` dinleyicisi; Apple imzalı işlem cihazda doğrulanır. Sunucu, RevenueCat ya da başka üçüncü taraf kod yok → "Veri Toplanmıyor" etiketi korunur. İnternet yokken son bilinen hak önbellekten okunur (gece çevrimdışı kayıt kesilmez). App Store Connect'te ödeme sorunu için ek süre (billing grace period) açılır.
+- **Aile Paylaşımı:** abonelikte açık; aile grubundaki eş ayrıca ödemez.
+- **Ödeme ekranı (Apple 3.1.2 ve 3.1.1):** dönem başına fiyat açık ve büyük, deneme bitiş tarihi ve sonra alınacak ücret yazılı, "Satın alımları geri yükle", "Aboneliği yönet" (`manageSubscriptionsSheet`), Kullanım Koşulları ve Gizlilik bağlantıları. Kutusuz, yüzen tipografi; yıllık planın haftalığa göre kazancı tek satırda. Süren sayaç, gece fazı ve kayıt anı asla ödeme ekranıyla kesilmez.
+- **Abonelik bitince:** yeni kayıt kapanır, ama aile verisini CSV/PDF olarak dışa aktarabilir; veri rehin tutulmaz (veri zaten ailenin kendi iCloud'unda). O an süren bir sayaç varsa önce kaydedilir, ödeme ekranı sonra gelir.
+- **Paylaşılan bebek (Himmet, 2026-11-16): davetli ödemez.** Abone ebeveynin bebeğine davet bağlantısıyla gelen kişi (büyükanne, bakıcı, aile grubu dışındaki eş) ödeme ekranını görmeden o bebeğe kayıt girer; kendi bebeğini açmak için abonelik gerekir. Davet bağlantısı (CKShare) kabul edilince ödeme ekranı atlanır; sahibin aboneliği biterse paylaşılan bebekte de yeni kayıt kapanır.
+- **Test:** StoreKit yapılandırma dosyası (`.storekit`) ile bulutta satın alma, iptal, yenileme ve deneme bitişi testleri; TestFlight'ta sandbox.
+
+---
+
 ## 11. Test ve bulut derleme hattı
 
 1. `swift test` — `NinnlyCore` (kural, takvim, CSV, birim) — Swift Testing ve XCTest.
@@ -191,16 +204,17 @@ Kurallar: arayüz `NinnlyCore`'u ve `NinnlyData`'yı kullanır, tersi asla. Ekra
 | A5 | Kilit ekranı sayacı, kutucuklar, Denetim Merkezi, Siri, Apple Watch | Kilit ekranından sayaç durdurulur; saat telefonsuz kayıt alır |
 | A6 | Sağlık: aşı/tarama, ilaç, ateş, büyüme, ek gıda, PDF, öz bakım, kaynaklar sayfası | İçerik PLAN §6'ya göre doğrulanmış |
 | A7 | CSV içe/dışa aktarma arayüzü | Gerçek Huckleberry/Nara dosyaları hatasız |
+| A7b | Abonelik: StoreKit 2, ödeme ekranı, haklar, Aile Paylaşımı (§10b) | `.storekit` testleri yeşil; TestFlight sandbox satın alma |
 | A8 | Mağaza: ikon katmanları, ekran görüntüleri, önizleme videosu, TR/EN metin, gizlilik ve destek sayfası, fiyat | İncelemeye gönderildi |
 
 ---
 
 ## 13. Açık kararlar (Himmet)
 
-1. **Fiyat:** araştırma önerisi ABD 6,99–7,99 $ (rakiplerin bir aylık abonelik fiyatına ömür boyu), Türkiye elle 149,99–199,99 ₺. Rakip fiyatları ve "Nara Baby aboneliğe geçti" iddiası Claude tarafından doğrulanmadı.
-2. **ABD aşı takvimi:** öneri §7 — AAP + ACOG temelli tek liste, ayrışan dozlarda tarafsız not, seçim ekranı yok.
+1. ~~Abonelik~~ → **karar (2026-11-16):** haftalık 2,99 $, yıllık 39,99 $, deneme yok, ücretsiz kısım yok, davetli ödemez (§10b). Bekleyen yalnız Türkiye fiyatı (App Store Connect kurulumunda).
+2. ~~ABD aşı takvimi~~ → **karar (2026-11-16): AAP temelli tek liste**, ayrışan dozlarda tarafsız not, seçim ekranı yok (§7).
 3. **Palet:** §8'deki logoyla uyumlu gece/gündüz paleti.
-4. **İkon katmanları:** görselin yeniden çizilmeden katmanlara ayrılması (iOS 26 şeffaf/renklendirilmiş modlar için).
+4. ~~İkon katmanları~~ → **karar (2026-11-16): katmanlara ayrılacak**, pikseller değişmeden; sonuç önce Himmet'e gösterilir.
 5. **Logo ayrıntısı:** A / B / C sürümlerinden biri ya da hiçbiri.
 6. **DSÖ izni:** Himmet adına başvuru.
 7. **App Store Connect kurulumu ve anahtarlar**, **gizlilik/destek sayfası adresi** (PLAN §8).
