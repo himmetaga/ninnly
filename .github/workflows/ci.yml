@@ -1,0 +1,99 @@
+# Ninnly bulut derleme, test ve ekran görüntüsü iş akışı
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test:
+    runs-on: macos-15
+    timeout-minutes: 30
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+
+      - name: Araç sürümlerini yazdır
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: XcodeGen kur ve projeyi üret
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: NinnlyCore birim testlerini çalıştır
+        run: swift test --package-path Packages/NinnlyCore
+
+      - name: Uygun iPhone simülatörünü seç
+        shell: bash
+        run: |
+          set -euo pipefail
+          SIM_UDID="$(xcrun simctl list devices available -j | python3 -c '
+          import json, sys
+          data = json.load(sys.stdin)
+          iphones = []
+          for runtime, devices in data.get("devices", {}).items():
+              if "iOS" not in runtime:
+                  continue
+              for d in devices:
+                  if d.get("isAvailable") and "iPhone" in d.get("name", ""):
+                      iphones.append(d)
+          if not iphones:
+              sys.exit("HATA: Kullanılabilir iPhone simülatörü bulunamadı.")
+          pro = [d for d in iphones if "Pro" in d.get("name", "")]
+          chosen = pro[0] if pro else iphones[0]
+          print(chosen["udid"])
+          ')"
+          if [ -z "$SIM_UDID" ]; then
+            echo "HATA: Simülatör UDID boş döndü." >&2
+            exit 1
+          fi
+          echo "Seçilen simülatör UDID: $SIM_UDID"
+          echo "SIM_UDID=$SIM_UDID" >> "$GITHUB_ENV"
+
+      - name: Uygulamayı derle ve UI testlerini çalıştır
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p build
+          xcodebuild test \
+            -project Ninnly.xcodeproj \
+            -scheme Ninnly \
+            -destination "id=$SIM_UDID" \
+            -resultBundlePath build/Ninnly.xcresult \
+            CODE_SIGNING_ALLOWED=NO | tee build/xcodebuild.log
+
+      - name: Ekran görüntülerini dışa aktar
+        if: always()
+        run: |
+          mkdir -p build/screenshots
+          xcrun xcresulttool export attachments --path build/Ninnly.xcresult --output-path build/screenshots || true
+
+      - name: Ekran görüntülerini yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ekran-goruntuleri
+          path: build/screenshots
+
+      - name: Hata durumunda derleme günlüğünü yükle
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: derleme-gunlugu
+          path: |
+            build/xcodebuild.log
+            build/Ninnly.xcresult

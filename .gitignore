@@ -1,0 +1,25 @@
+# Xcode / XcodeGen
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+DerivedData/
+build/
+*.xcresult
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Gizli dosyalar (asla depoya girmez)
+*.p8
+*.p12
+*.mobileprovision
+.env
+
+# İşletim sistemi
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Stratejik araştırma raporu yalnız yerelde kalır (depo herkese açık)
+docs/kaynak/

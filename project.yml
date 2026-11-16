@@ -1,0 +1,71 @@
+# Ninnly XcodeGen proje tanımı
+name: Ninnly
+
+options:
+  bundleIdPrefix: dev.himmetaga
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: JF563M2B3Z
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+
+packages:
+  NinnlyCore:
+    path: Packages/NinnlyCore
+
+targets:
+  Ninnly:
+    type: application
+    platform: iOS
+    sources:
+      - Ninnly
+    dependencies:
+      - package: NinnlyCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.himmetaga.ninnly
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    info:
+      path: Ninnly/Info.plist
+      properties:
+        CFBundleDisplayName: Ninnly
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        CFBundleDevelopmentRegion: en
+        CFBundleLocalizations:
+          - en
+          - tr
+        ITSAppUsesNonExemptEncryption: false
+
+  NinnlyUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - NinnlyUITests
+    dependencies:
+      - target: Ninnly
+    settings:
+      base:
+        TEST_TARGET_NAME: Ninnly
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: dev.himmetaga.ninnly.uitests
+
+schemes:
+  Ninnly:
+    build:
+      targets:
+        Ninnly: all
+    test:
+      gatherCoverageData: false
+      targets:
+        - NinnlyUITests

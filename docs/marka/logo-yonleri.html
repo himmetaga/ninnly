@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ninnly logo yönleri</title>
+<style>
+  body{margin:0;background:#EFEAE3;font-family:"Segoe UI",system-ui,sans-serif;color:#231F1E}
+  .wrap{max-width:920px;margin:0 auto;padding:32px 24px}
+  h1{font-weight:500;font-size:24px;margin:0 0 4px}
+  .sub{color:#7A6F67;margin:0 0 24px;font-size:15px}
+  .row{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:16px;align-items:center;margin-bottom:18px}
+  .tile{border-radius:18px;height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .night{--m:#E86F52;--s:#D98A3C;--w:#F2E3D5;background:#050507}
+  .day{--m:#E07A5F;--s:#4A7C6F;--w:#231F1E;background:#FAF6F0}
+  .wm{font-size:22px;letter-spacing:.08em;color:var(--w);margin-top:6px}
+  .n{font-size:20px;font-weight:600;margin:0 0 6px}
+  .d{font-size:15px;color:#5E554F;line-height:1.5;margin:0}
+  .anim .dr{stroke-dasharray:320;stroke-dashoffset:320;animation:dr 1.9s cubic-bezier(.45,.05,.2,1) forwards}
+  .anim .pop{opacity:0;animation:pp .6s 1.4s ease forwards}
+  @keyframes dr{to{stroke-dashoffset:0}} @keyframes pp{to{opacity:1}}
+  @media (max-width:640px){.row{grid-template-columns:1fr 1fr}.txt{grid-column:1 / -1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Ninnly · logo yönleri (kaba taslak)</h1>
+  <p class="sub">Solda gece paleti, ortada gündüz paleti. Karoya dokununca logo çizilerek yeniden canlanır.</p>
+
+  <template id="m1"><svg width="150" height="150" viewBox="0 0 100 100"><path class="dr" d="M20 48 Q33 63 46 48" fill="none" style="stroke:var(--m)" stroke-width="5.5" stroke-linecap="round"/><path class="dr" d="M54 48 Q67 63 80 48" fill="none" style="stroke:var(--m)" stroke-width="5.5" stroke-linecap="round"/><circle class="pop" cx="76" cy="26" r="3.5" style="fill:var(--s)"/></svg></template>
+  <template id="m2"><svg width="150" height="150" viewBox="0 0 100 100"><path class="dr" d="M16 46 A34 32 0 0 0 84 46 A34 21 0 0 1 16 46 Z" style="fill:none;stroke:var(--s)" stroke-width="4" stroke-linejoin="round"/><circle class="pop" cx="50" cy="55" r="8" style="fill:var(--m)"/><circle class="pop" cx="72" cy="22" r="2.8" style="fill:var(--s)"/></svg></template>
+  <template id="m3"><svg width="150" height="150" viewBox="0 0 100 100"><path class="dr" d="M12 66 V50 Q12 36 24 36 Q36 36 36 50 V58 Q36 66 43 66 Q50 66 50 58 V50 Q50 36 62 36 Q74 36 74 50 V58 Q74 66 82 63" fill="none" style="stroke:var(--m)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle class="pop" cx="89" cy="58" r="3.5" style="fill:var(--s)"/></svg></template>
+  <template id="m4"><svg width="150" height="150" viewBox="0 0 100 100"><path class="dr" d="M72 24 A30 30 0 1 0 80 60" fill="none" style="stroke:var(--m)" stroke-width="7" stroke-linecap="round"/><circle class="pop" cx="56" cy="49" r="10" style="fill:var(--s)"/></svg></template>
+
+  <div class="row" data-m="m1"><div class="tile night"></div><div class="tile day"></div>
+    <div class="txt"><p class="n">1 · Uyuyan gözler</p><p class="d">Adın iki "n" harfi ters çevrilince kapalı göz kapaklarına dönüşür. Köşede küçük bir yıldız var.</p></div></div>
+  <div class="row" data-m="m2"><div class="tile night"></div><div class="tile day"></div>
+    <div class="txt"><p class="n">2 · Hilal beşik</p><p class="d">Yatık bir hilal beşiğe dönüşür; içinde bebek, üstünde bir yıldız.</p></div></div>
+  <div class="row" data-m="m3"><div class="tile night"></div><div class="tile day"></div>
+    <div class="txt"><p class="n">3 · Ninni dalgası</p><p class="d">Tek, kesintisiz bir çizgi. İki "n" sallanan bir ninni ritmine dönüşür.</p></div></div>
+  <div class="row" data-m="m4"><div class="tile night"></div><div class="tile day"></div>
+    <div class="txt"><p class="n">4 · Kucak</p><p class="d">Büyük bir yay (anne) küçük bir daireyi (bebek) sarar; aynı zamanda bir hilal.</p></div></div>
+</div>
+<script>
+  // Her satırdaki iki karoya ilgili logoyu ve yazı logosunu yerleştir
+  document.querySelectorAll('.row').forEach(function (row) {
+    var tpl = document.getElementById(row.dataset.m);
+    row.querySelectorAll('.tile').forEach(function (tile) {
+      tile.appendChild(tpl.content.cloneNode(true));
+      var wm = document.createElement('div'); wm.className = 'wm'; wm.textContent = 'ninnly';
+      tile.appendChild(wm);
+      // Dokununca çizim animasyonunu baştan oynat
+      tile.addEventListener('click', function () {
+        tile.classList.remove('anim'); void tile.offsetWidth; tile.classList.add('anim');
+      });
+    });
+  });
+  // Ekran görüntüsü alınırken (?static) animasyonsuz, normal açılışta çizilerek başla
+  if (location.search.indexOf('static') === -1) {
+    document.querySelectorAll('.tile').forEach(function (t) { t.classList.add('anim'); });
+  }
+</script>
+</body>
+</html>
