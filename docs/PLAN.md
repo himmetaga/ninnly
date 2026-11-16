@@ -10,6 +10,7 @@ Tarih: 2026-11-16 · Kaynak: *Ninnly iOS Master Araştırma, Analiz ve Mimari Ra
 | İş modeli | **Tek fiyatlı ücretli uygulama.** Uygulama içi satın alma, abonelik, deneme süresi ve reklam yok. Bütün özellikler satın alan herkese açık. |
 | v1.0 kapsamı | Raporun tamamı: bütün modüller + Apple Watch + Siri + CSV ile veri aktarma. |
 | Konum | `C:/Users/win10/Desktop/ninnly` ↔ GitHub `himmetaga/ninnly` (herkese açık depo, dal `main`; özel depoda macOS derlemesi fatura engeline takıldı. Strateji raporu yalnız yerelde, `docs/kaynak/` git dışı). |
+| Ülkeler ve aşı takvimi | Uygulama **bütün ülkelerde** satılır (Himmet, 2026-11-16). Hazır anne + bebek aşı takvimi yalnız **Türkiye ve ABD** için hazırlanır ve her yıl resmî kaynaktan yeniden kontrol edilir. Takvim bölge ayarından otomatik seçilir, elle değiştirilebilir; her dozda kaynak ve son kontrol tarihi görünür. Hazır takvimi olmayan ülkede aile kendi takvimini girer; uygulama hiçbir zaman başka ülkenin takvimini göstermez. Dil "hatırlatıcı"dır, tıbbi öneri değil. Araştırma: `docs/arastirma/M5_asi_takvimleri.md`. |
 | Kimlikler | Bundle `dev.himmetaga.ninnly`, App Group `group.dev.himmetaga.ninnly`, iCloud `iCloud.dev.himmetaga.ninnly`. |
 | Apple hesabı | Mevcut bireysel geliştirici hesabı (Team JF563M2B3Z, Godloom ile aynı). |
 | Cihaz | Yalnız iPhone (dikey). |
@@ -25,6 +26,8 @@ Tarih: 2026-11-16 · Kaynak: *Ninnly iOS Master Araştırma, Analiz ve Mimari Ra
 7. **Pazar rakamları doğrulanmadı.** Raporun pazar ve rakip rakamları (ör. "Nara Baby Eylül 2026'da ücretliye geçti") yalnız yön göstergesi.
 
 ## 3. Mimari
+
+> **Ayrıntılı ve güncel mimari: [`docs/MIMARI.md`](MIMARI.md)** (2026-11-16, M1–M5 araştırmalarına dayanır). Bu bölüm özettir; çelişkide MIMARI.md geçerlidir. Önemli değişiklik: Apple 28 Nisan 2026'dan beri yalnız Xcode 26 ile derlenen yüklemeleri kabul ediyor → bulut hattı `macos-26`'ya taşınır (MIMARI §1, aşama A0b).
 
 **Hedefler (XcodeGen `project.yml`):**
 - `Ninnly`: iOS uygulaması.
@@ -101,7 +104,7 @@ Widget ve Watch verileri App Group üzerinden okur. Sunucu yok; geliştiriciye m
 
 ## 5. Aşamalar
 
-Bu aşamalar için süre tahmini verilmiyor. Her aşamanın sonunda derleme temiz, testler geçer ve simülatör ekran görüntüsüyle doğrulanır; büyük aşamalardan sonra TestFlight'ta da denenir.
+Güncel sıra MIMARI §12'de (A0b: Xcode 26'ya geçiş; A1b: aşı takvimi motoru ve CSV). Bu aşamalar için süre tahmini verilmiyor. Her aşamanın sonunda derleme temiz, testler geçer ve simülatör ekran görüntüsüyle doğrulanır; büyük aşamalardan sonra TestFlight'ta da denenir.
 
 | # | Aşama | Bitti tanımı |
 |---|---|---|

@@ -2,7 +2,7 @@
 
 **Önce `docs/PLAN.md` oku**; kararlar ve aşamalar orada.
 
-- Kullanıcıyla Türkçe konuşulur; kod yorumları ve commit mesajları Türkçe; araçlara (agy, Copilot) brifler İngilizce.
+- Kullanıcıyla Türkçe konuşulur; kod yorumları ve commit mesajları Türkçe; araçlara (agy, Copilot) yazılan brifler ve raporlar da Türkçe (ekranda Himmet görüyor, İngilizcesi zayıf). Kod içindeki adlar İngilizce kalır.
 - SwiftUI yerel uygulama, iOS 18+ / watchOS 11+. Windows'ta Swift yok: derleme ve test GitHub Actions macOS'ta.
 - Tek fiyatlı ücretli uygulama: uygulama içi satın alma, abonelik, reklam, analitik ve üçüncü taraf SDK yok.
 - Gece fazında beyaz/mavi ton yok; arayüzde kutu/kart/gölge yok (yüzen tipografi).
