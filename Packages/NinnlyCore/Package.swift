@@ -1,4 +1,4 @@
-// swift-tools-version: 5.10
+// swift-tools-version: 6.0
 // Ninnly çekirdek iş kuralları paketi (arayüzden bağımsız, yalnız Foundation)
 
 import PackageDescription
@@ -24,5 +24,7 @@ let package = Package(
             name: "NinnlyCoreTests",
             dependencies: ["NinnlyCore"]
         )
-    ]
+    ],
+    // .iOS(.v18) / .watchOS(.v11) 6.0 araç sürümü ister; dil kipi uygulamayla aynı (Swift 5)
+    swiftLanguageModes: [.v5]
 )
