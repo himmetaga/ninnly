@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#FAF6F0"/>
+  <!-- Damla: dolgu + aynı renkte kalın kontur, uç yuvarlak birleşir -->
+  <path d="M512 176 C474 250 268 432 268 612 A244 244 0 0 0 756 612 C756 432 550 250 512 176 Z"
+        fill="#E07A5F" stroke="#E07A5F" stroke-width="28" stroke-linejoin="round"/>
+  <!-- Parlama -->
+  <path d="M372 520 C380 452 420 398 462 356" fill="none" stroke="#FAF6F0" stroke-opacity="0.42" stroke-width="30" stroke-linecap="round"/>
+  <!-- Yanaklar -->
+  <ellipse cx="374" cy="680" rx="40" ry="26" fill="#F3A893"/>
+  <ellipse cx="650" cy="680" rx="40" ry="26" fill="#F3A893"/>
+  <!-- Kapalı gözler -->
+  <path d="M394 624 C406 658 462 658 474 624" fill="none" stroke="#231F1E" stroke-width="22" stroke-linecap="round"/>
+  <path d="M550 624 C562 658 618 658 630 624" fill="none" stroke="#231F1E" stroke-width="22" stroke-linecap="round"/>
+  <!-- Gülümseme -->
+  <path d="M484 712 C496 736 528 736 540 712" fill="none" stroke="#231F1E" stroke-width="20" stroke-linecap="round"/>
+</svg>

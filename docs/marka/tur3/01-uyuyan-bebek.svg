@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#FAF6F0"/>
+  <!-- Yumuşak çakıl taşı biçimi (üstü hafif dar) -->
+  <path d="M520 214 C696 214 806 372 806 556 C806 738 682 826 512 826 C342 826 218 738 218 556 C218 372 344 214 520 214 Z" fill="#D98A3C"/>
+  <!-- Parlama -->
+  <path d="M332 440 C352 372 404 316 466 290" fill="none" stroke="#FAF6F0" stroke-opacity="0.35" stroke-width="30" stroke-linecap="round"/>
+  <!-- Yanaklar -->
+  <ellipse cx="360" cy="642" rx="50" ry="34" fill="#E86F52"/>
+  <ellipse cx="664" cy="642" rx="50" ry="34" fill="#E86F52"/>
+  <!-- Kapalı gözler -->
+  <path d="M382 566 C396 606 462 606 476 566" fill="none" stroke="#231F1E" stroke-width="24" stroke-linecap="round"/>
+  <path d="M548 566 C562 606 628 606 642 566" fill="none" stroke="#231F1E" stroke-width="24" stroke-linecap="round"/>
+  <!-- Gülümseme -->
+  <path d="M482 664 C494 690 530 690 542 664" fill="none" stroke="#231F1E" stroke-width="20" stroke-linecap="round"/>
+</svg>

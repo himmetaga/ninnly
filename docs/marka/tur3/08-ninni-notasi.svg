@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#FAF6F0"/>
+  <!-- Nota sapı ve bayrağı: tek kalın çizgi -->
+  <path d="M596 640 L596 236 C626 318 736 340 724 480" fill="none" stroke="#E07A5F" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Nota başı = bebek başı -->
+  <circle cx="446" cy="652" r="150" fill="#FAF6F0" stroke="#E07A5F" stroke-width="40"/>
+  <!-- Saç kıvrımı -->
+  <path d="M424 540 C430 512 470 512 468 544" fill="none" stroke="#E07A5F" stroke-width="16" stroke-linecap="round"/>
+  <!-- Yanaklar -->
+  <ellipse cx="376" cy="700" rx="26" ry="17" fill="#F3A893"/>
+  <ellipse cx="516" cy="700" rx="26" ry="17" fill="#F3A893"/>
+  <!-- Kapalı gözler ve gülümseme -->
+  <path d="M378 648 C386 672 422 672 430 648" fill="none" stroke="#231F1E" stroke-width="16" stroke-linecap="round"/>
+  <path d="M462 648 C470 672 506 672 514 648" fill="none" stroke="#231F1E" stroke-width="16" stroke-linecap="round"/>
+  <path d="M428 712 C436 728 456 728 464 712" fill="none" stroke="#231F1E" stroke-width="14" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#FAF6F0"/>
+  <!-- Gündüz yarısı (adaçayı) ve gece yarısı (kehribar), arada ince boşluk -->
+  <path d="M502 206 A306 306 0 0 0 502 818 Z" fill="#4A7C6F"/>
+  <path d="M522 206 A306 306 0 0 1 522 818 Z" fill="#D98A3C"/>
+  <!-- Ortada uyuyan bebek yüzü -->
+  <circle cx="512" cy="512" r="128" fill="#FAF6F0"/>
+  <ellipse cx="452" cy="548" rx="22" ry="14" fill="#F3A893"/>
+  <ellipse cx="572" cy="548" rx="22" ry="14" fill="#F3A893"/>
+  <path d="M452 506 C459 526 489 526 496 506" fill="none" stroke="#231F1E" stroke-width="14" stroke-linecap="round"/>
+  <path d="M528 506 C535 526 565 526 572 506" fill="none" stroke="#231F1E" stroke-width="14" stroke-linecap="round"/>
+  <path d="M496 568 C503 582 521 582 528 568" fill="none" stroke="#231F1E" stroke-width="12" stroke-linecap="round"/>
+</svg>

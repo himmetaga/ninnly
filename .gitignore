@@ -23,3 +23,9 @@ desktop.ini
 
 # Stratejik araştırma raporu yalnız yerelde kalır (depo herkese açık)
 docs/kaynak/
+
+# Reddedilen yapay zekâ logo taslakları yalnız yerelde (depo şişmesin)
+docs/marka/tur2/
+docs/marka/tur4/
+docs/marka/son/
+docs/marka/hilal/
